@@ -337,6 +337,82 @@ body .wpcf7 input[type="submit"]:hover {
     background-color: var(--green);
 }
 
+/* SINGLE PAGE */
+
+.product-page__header {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.product-page__header H1{
+    margin-top: 80px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--green);
+}
+
+.product-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 50px;;
+}
+
+.product-description{
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.product-ingredients{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.product-price{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--red);
+}
+
+.product-quantity{
+    margin-top: 100px !important;
+}
+
+.product-image img{
+    flex: 1;
+    max-width: 400px;
+}
+
+.product__thumbnail {
+    width: 100%;
+    height: auto;
+}
+
+.product-details {
+    flex: 2;
+}
+
+
+.product-price, .product-ingredients, .product-quantity {
+    margin: 1em 0;
+}
+
+.add-to-cart {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.related-products {
+    margin-top: 3em;
+}
+
 
 
 /* MEDIA QUERIES */
@@ -365,12 +441,21 @@ body .wpcf7 input[type="submit"]:hover {
     }
 }
 
+@media screen and (max-width: 1024px) {
+    .product-quantity{
+        margin-top: 30px !important;
+    }
+}
+
 @media (max-width: 768px) {
     body .wpcf7 input[type="text"],
     body .wpcf7 input[type="email"],
     body .wpcf7 input[type="tel"],
     body .wpcf7 textarea {
         width: 100%;
+    }
+    .product-quantity{
+        margin-top: 10px !important;
     }
 }
 
