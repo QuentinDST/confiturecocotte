@@ -9,6 +9,7 @@
         <H2>Filtrer par catégorie</H2>
     </div>
 
+
     <?php
     // Récupération des termes de la taxonomie "categorie_confiture"
     $terms = get_terms(array(
@@ -28,8 +29,27 @@
                     <?php endforeach; ?>
                 </div>
             </form>
+
         </div>
     <?php endif; ?>
+    <?php
+    if (isset($_GET['category']) && !empty($_GET['category'])) {
+        // Récupère l'objet du terme à partir du slug
+        $term_obj = get_term_by('slug', $_GET['category'], 'categorie_confiture');
+
+        if ($term_obj) {
+    ?>
+            <div class="category-wrapper">
+                <div class="color-box"></div>
+                <div class="category-description">
+                    <H2 class="category-description-title" ><?php echo $term_obj->name; ?></H2>
+                    <p><?php echo term_description($term_obj->term_id, 'categorie_confiture'); ?></p>
+                </div>
+            </div>
+    <?php
+        }
+    }
+    ?>
 
     <!-- Cartes de produits -->
     <div class="custom-post-mea-confiture">
@@ -63,6 +83,10 @@
         endif;
         ?>
     </div>
+
+
+
+    // section avis
 </main>
 
 <?php get_footer(); ?>

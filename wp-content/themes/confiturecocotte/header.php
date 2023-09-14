@@ -21,7 +21,7 @@
                 <div class="header-right">
                     <?php
                     wp_nav_menu(array(
-                        'theme_location' => 'confiturecocotte',
+                        'menu' => 'confiturecocotte',
                         'menu_class'     => 'header-menu',
                         'orderby'        => 'menu_order'
                     ));
