@@ -6,6 +6,7 @@
 
 	?>
 			<div class="product-page__header">
+				<?php custom_breadcrumbs(); ?>
 				<h1 class="product__title"><?php the_title(); ?></h1>
 			</div>
 
@@ -27,7 +28,7 @@
 						if ($ingredients) :
 							$ingredients_list = explode(' ', $ingredients);
 							if (!empty($ingredients_list)) : ?>
-					<p class="product-ingredients">Ingrédients:</p>
+					<p class="product-ingredients">LA COMPOSITION</p>
 					<ul>
 						<?php foreach ($ingredients_list as $ingredient) : ?>
 							<li><?php echo esc_html($ingredient); ?></li>
@@ -41,21 +42,17 @@
 			<p class="product-price"><?php the_field('prix'); ?> €</p>
 
 			<div class="product-quantity">
-				Quantité: <input type="number" min="1" value="1">
+				<span class="product-quantity-label">QUANTITE</span><input type="number" min="1" value="0">
 				<button class="add-to-cart">Ajouter au panier</button>
 			</div>
-			</div>
 
-			
-			<section class="product-reviews">
-				
-			</section>
+				</div>
 
-			<section class="related-products">
-				
-			</section>
+				<section class="related-products">
 
-	<?php endwhile;
+				</section>
+
+		<?php endwhile;
 	endif; ?>
 </main>
 

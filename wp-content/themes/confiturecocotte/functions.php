@@ -72,6 +72,7 @@ function create_confiture_category_taxonomy()
 
 add_action('init', 'create_confiture_category_taxonomy', 0);
 
+//Filtrer confiture par catégories
 function filter_confitures_by_category($query)
 {
     if (is_admin() || !$query->is_main_query()) {
@@ -97,7 +98,7 @@ function filter_confitures_by_category($query)
 
 add_action('pre_get_posts', 'filter_confitures_by_category');
 
-
+//Affichage des cards produits
 function custom_post_type_shortcode($atts)
 {
     ob_start();
@@ -145,7 +146,7 @@ function custom_post_type_shortcode($atts)
     <?php
         endwhile;
 
-        echo '</div>'; // Fermer le conteneur ici
+        echo '</div>'; 
 
         wp_reset_postdata();
     endif;
@@ -154,7 +155,7 @@ function custom_post_type_shortcode($atts)
 }
 add_shortcode('custom_post_type_mea', 'custom_post_type_shortcode');
 
-
+// Filtre sur les catégories CPT
 function shortcode_filtre_categories_et_articles()
 {
     ob_start();
@@ -202,3 +203,38 @@ function shortcode_filtre_categories_et_articles()
 }
 
 add_shortcode('filtre_categories_et_articles', 'shortcode_filtre_categories_et_articles');
+
+
+//breadcrumbs
+function custom_breadcrumbs() {
+    global $post;
+
+    echo '<ul id="breadcrumbs">';
+
+    echo '<li class="home-breadcrumb"><a href="' . home_url() . '">Accueil</a></li>';
+
+    if (is_single()) { 
+        // Vérifie si le post est du type "confiture"
+        if (get_post_type() == 'confiture') {
+            echo '<li class="confiture-breadcrumb"><a href="' . get_post_type_archive_link('confiture') . '">Confiture</a></li>';
+        }
+        echo '<li>';
+        the_category(', ');
+        echo '</li>';
+        echo '<li>';
+        the_title();
+        echo '</li>';
+    } elseif (is_page()) { 
+        if ($post->post_parent) {
+            $ancestors = get_post_ancestors($post->ID);
+            foreach ($ancestors as $ancestor) {
+                echo '<li><a href="' . get_permalink($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
+            }
+            echo '<li>' . get_the_title() . '</li>';
+        } else {
+            echo '<li>' . get_the_title() . '</li>';
+        }
+    }
+
+    echo '</ul>';
+}
